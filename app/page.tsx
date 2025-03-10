@@ -309,6 +309,7 @@ export default function Home() {
               <a  href="https://x.com/IBF_Community?t=33pZSiTWdG5aNDt_4xHKLQ&s=09" className="w-full justify-start bg-blue-900">
                 <X className="w-4 h-4 mr-2" />
               </a>
+              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d876.9897883812258!2d77.5835540696105!3d28.45064767762206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1741596405540!5m2!1sen!2sin" width="200" height="150" loading="lazy"></iframe>
             </div>
           </div>
         </div>
