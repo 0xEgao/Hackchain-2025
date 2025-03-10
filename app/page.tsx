@@ -57,11 +57,11 @@ export default function Home() {
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled ? 'bg-black/80 backdrop-blur-lg' : 'bg-transparent'
       }`}>
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-6xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-2 px-1">
+            <div className="flex items-center gap-1">
               <Code2 className="w-8 h-8 text-purple-400" />
-              <span className="text-xl font-bold">Hackchain</span>
+              <span className="text-sm sm:text-xl font-bold">Hackchain</span>
             </div>
             <div className="hidden md:flex items-center gap-8">
               <Button 
@@ -93,12 +93,12 @@ export default function Home() {
                 About
               </Button>
             </div>
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-1">
               <Button size="sm" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600/20">
                 Sponsor Us
               </Button>
               <Button size="sm" className="bg-purple-600 hover:bg-purple-700">
-                Register Now
+                Register
               </Button>
             </div>
           </div>
@@ -147,7 +147,7 @@ export default function Home() {
       </section>
 
       {/* Details Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-black to-purple-900">
+      <section id="details" className="py-20 px-4 bg-gradient-to-b from-black to-purple-900">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-12 text-center">Event Details</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -230,7 +230,7 @@ export default function Home() {
 
 
       {/* Past Sponsors Section */}
-      <section className="py-20 px-4 bg-gradient-to-b from-purple-900 to-black">
+      <section id="sponsors" className="py-20 px-4 bg-gradient-to-b from-purple-900 to-black">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-4xl font-bold mb-4 text-center">Past Sponsors</h2>
           <p className="text-xl text-center mb-12 text-purple-400">New sponsors revealing soon!</p>
@@ -261,7 +261,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black py-20 px-4">
+      <footer id="about" className="bg-black py-20 px-4">
         <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-12">
           <div>
             <div className="w-30 h-30 bg-purple-900/30 rounded-lg mb-4 flex items-center justify-center">
@@ -309,7 +309,7 @@ export default function Home() {
               <a  href="https://x.com/IBF_Community?t=33pZSiTWdG5aNDt_4xHKLQ&s=09" className="w-full justify-start bg-blue-900">
                 <X className="w-4 h-4 mr-2" />
               </a>
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d876.9897883812258!2d77.5835540696105!3d28.45064767762206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1741596405540!5m2!1sen!2sin" width="200" height="150" loading="lazy"></iframe>
+              <iframe className="flex items-center justify-center" src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d876.9897883812258!2d77.5835540696105!3d28.45064767762206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1741596405540!5m2!1sen!2sin" width="200" height="150" loading="lazy"></iframe>
             </div>
           </div>
         </div>
