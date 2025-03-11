@@ -60,6 +60,9 @@ const config: Config = {
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))',
         },
+        hackchainBlue: '#A7C7E7', // Light blue color from the text
+        hackchainOutline: '#000000', // Black outline
+        hackchainShadow: '#D0D6E0',
       },
       keyframes: {
         'accordion-down': {
