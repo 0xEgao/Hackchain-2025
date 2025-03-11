@@ -258,8 +258,8 @@ export default function Home() {
       <footer id="about" className="bg-black py-12 sm:py-20 px-4">
         <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
           <div>
-            <div className="w-20 h-20 sm:w-30 sm:h-30 bg-purple-900/30 rounded-lg mb-4 flex items-center justify-center mx-auto md:mx-0">
-              <img src="/ibf.png" className="w-16 h-16 sm:w-50 sm:h-50 rounded-md" />
+            <div className="w-30 h-30 sm:w-30 sm:h-30 bg-purple-900/30 rounded-lg mb-4 flex items-center justify-center mx-auto md:mx-0">
+              <img src="/ibf.png" className="w-30 h-30 rounded-md" />
             </div>
             <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center md:text-left">Indian Blockchain Fraternity</h3>
             <p className="text-gray-400 mb-4 text-sm sm:text-base text-center md:text-left">
@@ -269,7 +269,7 @@ export default function Home() {
           
           <div>
             <h3 className="text-lg sm:text-xl font-bold mb-6 text-center md:text-left">Quick Links</h3>
-            <ul className="space-y-4 flex flex-col items-center md:items-start">
+            <ul className="space-y-4 flex flex-col  md:items-start">
               <li>
                 <Button variant="link" className="text-gray-400 hover:text-purple-400 text-sm sm:text-base">
                   <ChevronRight className="w-4 h-4 mr-2" />
@@ -295,7 +295,7 @@ export default function Home() {
 
           <div>
             <h3 className="text-lg sm:text-xl font-bold mb-6 text-center md:text-left">Contact Us</h3>
-            <div className="space-y-4 flex flex-col items-center md:items-start">
+            <div className="space-y-4 flex flex-col md:items-start">
               <a href="https://www.linkedin.com/company/indian-blockchain-fraternity/" className="w-full justify-start">
                 <Linkedin className="w-4 h-4 mr-2" />
               </a>
