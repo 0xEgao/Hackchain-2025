@@ -5,7 +5,7 @@ import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'HackChain 2024 | Bennett University',
+  title: 'HackChain 2025 | Bennett University',
   description: "Bennett University's Biggest Web3 Hackathon",
 };
 
