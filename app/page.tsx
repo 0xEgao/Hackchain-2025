@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
-import { Calendar, Clock, MapPin, Trophy, Mail, Linkedin, ChevronRight, Code2, X } from "lucide-react";
+import { Calendar, Clock, MapPin, Trophy, Menu, Mail, Code2, X, } from "lucide-react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Sphere, MeshDistortMaterial } from "@react-three/drei";
 import Autoplay from "embla-carousel-autoplay";
@@ -35,6 +35,7 @@ const schedule = [
 export default function Home() {
   const plugin = Autoplay({ delay: 2000, stopOnInteraction: false });
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen,setIsMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,59 +52,132 @@ export default function Home() {
       element.scrollIntoView({ behavior: 'smooth' });
     }
   };
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <main className="min-h-screen bg-black text-white">
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-black/80 backdrop-blur-lg' : 'bg-transparent'
-      }`}>
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex items-center justify-between flex-wrap">
-            <div className="flex items-center gap-1">
-              <Code2 className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
-              <span className="text-sm sm:text-xl font-bold">Hackchain</span>
-            </div>
-            <div className="hidden md:flex items-center gap-4 lg:gap-8">
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
-                onClick={() => scrollToSection('details')}
-              >
-                Details
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
-                onClick={() => scrollToSection('schedule')}
-              >
-                Schedule
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
-                onClick={() => scrollToSection('sponsors')}
-              >
-                Sponsors
-              </Button>
-              <Button 
-                variant="ghost" 
-                className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
-                onClick={() => scrollToSection('about')}
-              >
-                About
-              </Button>
-            </div>
-            <div className="flex items-center gap-1 mt-2 md:mt-0">
-              <Button size="sm" variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600/20 text-xs sm:text-sm">
-                Sponsor Us
-              </Button>
-              <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm">
-                Register
-              </Button>
-            </div>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 mx-4 ${
+  isScrolled ? 'bg-black/80 backdrop-blur-lg shadow-lg shadow-purple-500/10' : 'bg-transparent'
+} ${isMenuOpen ? 'bg-black/95' : ''}`}
+  style={{ borderRadius: '0 0 12px 12px' }}
+>
+  <div className="max-w-6xl mx-auto px-4 py-4">
+    <div className="flex items-center justify-between flex-wrap">
+      <div className="flex items-center gap-1">
+        <Code2 className="w-6 h-6 sm:w-8 sm:h-8 text-purple-400" />
+        <span className="text-sm sm:text-xl font-bold" style={{ fontFamily: "'NT Brick Sans',sans-serif" }}>Hackchain</span>
+      </div>
+      
+      {/* Mobile menu button */}
+      <div className="md:hidden">
+        <Button 
+          variant="ghost" 
+          className="text-gray-300 hover:text-white hover:bg-purple-600/20 p-1" 
+          onClick={toggleMenu}
+        >
+          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </Button>
+      </div>
+      
+      {/* Desktop navigation */}
+      <div className="hidden md:flex items-center gap-4 lg:gap-8">
+        <Button 
+          variant="ghost" 
+          className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
+          onClick={() => scrollToSection('details')}
+        >
+          Details
+        </Button>
+        <Button 
+          variant="ghost" 
+          className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
+          onClick={() => scrollToSection('schedule')}
+        >
+          Schedule
+        </Button>
+        <Button 
+          variant="ghost" 
+          className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
+          onClick={() => scrollToSection('sponsors')}
+        >
+          Sponsors
+        </Button>
+        <Button 
+          variant="ghost" 
+          className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm lg:text-base"
+          onClick={() => scrollToSection('about')}
+        >
+          About
+        </Button>
+      </div>
+      
+      {/* Action buttons - desktop */}
+      <div className="hidden md:flex items-center gap-2">
+       
+        <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-sm">
+          Register Now
+        </Button>
+      </div>
+    </div>
+    
+    {/* Mobile menu dropdown */}
+    {isMenuOpen && (
+      <div className="md:hidden mt-4 pb-4 border-t border-purple-800/30 pt-4">
+        <div className="flex flex-col space-y-3">
+          <Button 
+            variant="ghost" 
+            className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm w-full justify-start"
+            onClick={() => {
+              scrollToSection('details');
+              setIsMenuOpen(false);
+            }}
+          >
+            Details
+          </Button>
+          <Button 
+            variant="ghost" 
+            className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm w-full justify-start"
+            onClick={() => {
+              scrollToSection('schedule');
+              setIsMenuOpen(false);
+            }}
+          >
+            Schedule
+          </Button>
+          <Button 
+            variant="ghost" 
+            className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm w-full justify-start"
+            onClick={() => {
+              scrollToSection('sponsors');
+              setIsMenuOpen(false);
+            }}
+          >
+            Sponsors
+          </Button>
+          <Button 
+            variant="ghost" 
+            className="text-gray-300 hover:text-white hover:bg-purple-600/20 text-sm w-full justify-start"
+            onClick={() => {
+              scrollToSection('about');
+              setIsMenuOpen(false);
+            }}
+          >
+            About
+          </Button>
+          
+          {/* Action buttons in mobile menu */}
+          <div className="flex items-center gap-2 pt-2">
+            <Button size="sm" className="bg-purple-600 hover:bg-purple-700 text-xs w-full">
+              Register
+            </Button>
           </div>
         </div>
-      </nav>
+      </div>
+    )}
+  </div>
+</nav>
 
       {/* Hero Section */}
       <section className="relative h-screen flex items-center justify-center overflow-hidden">
@@ -132,15 +206,18 @@ export default function Home() {
             <h1 className="text-hackchainBlue font-bold text-3xl sm:text-4xl md:text-5xl relative inline-block" style={{ fontFamily: "'NT Brick Sans',sans-serif" }}>
               HackChain 2025
             </h1>
-            <p className="text-sm sm:text-lg md:text-xl mb-6 sm:mb-8 text-green-600">
+            <p className="text-sm sm:text-lg md:text-xl mb-6 sm:mb-8 text-green-500">
               INDIAN BLOCKCHAIN FRATERNITY'S PREMIER HACKATHON
             </p>
             <div className="flex gap-2 sm:gap-4 justify-center flex-wrap">
               <Button size="sm"  className="bg-purple-600 hover:bg-purple-700 text-xs sm:text-base">
                 Register Now
               </Button>
-              <Button size="sm"  variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-600/20 text-xs sm:text-base">
+              <Button size="sm"  variant="outline" className="border-purple-600 text-purple-400 hover:bg-purple-200/20 text-xs sm:text-base">
+                <a href="https://drive.google.com/file/d/1UoRd7drHU_QOs90fCxYii0Qi1vOpmB80/view">
                 Sponsor Us
+                </a>
+                
               </Button>
             </div>
           </motion.div>
@@ -255,64 +332,42 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer id="about" className="bg-black py-12 sm:py-20 px-4">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12">
-          <div>
-            <div className="w-30 h-30 sm:w-30 sm:h-30 bg-purple-900/30 rounded-lg mb-4 flex items-center justify-center mx-auto md:mx-0">
-              <img src="/ibf.png" className="w-30 h-30 rounded-md" />
-            </div>
-            <h3 className="text-xl sm:text-2xl font-bold mb-4 text-center md:text-left">Indian Blockchain Fraternity</h3>
-            <p className="text-gray-400 mb-4 text-sm sm:text-base text-center md:text-left">
-              Leading the blockchain revolution at Bennett University. IBF is a community of innovators, developers, and blockchain enthusiasts.
-            </p>
-          </div>
-          
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold mb-6 text-center md:text-left">Quick Links</h3>
-            <ul className="space-y-4 flex flex-col  md:items-start">
-              <li>
-                <Button variant="link" className="text-gray-400 hover:text-purple-400 text-sm sm:text-base">
-                  <ChevronRight className="w-4 h-4 mr-2" />
-                  About IBF
-                </Button>
-              </li>
-              <li>
-                <Button variant="link" className="text-gray-400 hover:text-purple-400 text-sm sm:text-base">
-                  <ChevronRight className="w-4 h-4 mr-2" />
-                  Past Events
-                </Button>
-              </li>
-              <li>
-                <Button variant="link" className="text-gray-400 hover:text-purple-400 text-sm sm:text-base">
-                  <ChevronRight className="w-4 h-4 mr-2" />
-                  <a href="https://chat.whatsapp.com/GBSbc0HutJM5Ld1f5RSv3F">
-                    Join Community
-                  </a>
-                </Button>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="text-lg sm:text-xl font-bold mb-6 text-center md:text-left">Contact Us</h3>
-            <div className="space-y-4 flex flex-col md:items-start">
-              <a href="https://www.linkedin.com/company/indian-blockchain-fraternity/" className="w-full justify-start">
-                <Linkedin className="w-4 h-4 mr-2" />
-              </a>
-              <a href="https://x.com/IBF_Community?t=33pZSiTWdG5aNDt_4xHKLQ&s=09" className="w-full justify-start ">
-                <X className="w-4 h-4 mr-2" />
-              </a>
-              <iframe 
+      <footer id="about" className="bg-black py-12 px-4">
+  <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+          {/* Left Column - Logo and Address */}
+          <div className="flex flex-col">
+      <div className="flex items-center gap-3 mb-4">
+      </div>
+      <div className="space-y-2 mt-2">
+        <a href="https://chat.whatsapp.com/GBSbc0HutJM5Ld1f5RSv3F" className="block text-gray-400 hover:text-purple-400 text-sm">Join Community</a>
+        <a href="https://drive.google.com/file/d/1UoRd7drHU_QOs90fCxYii0Qi1vOpmB80/view?usp=drive_link" className="block text-gray-400 hover:text-purple-400 text-sm">Sponsorship Brochure</a>
+      </div>
+    </div>
+    <div>
+      <div className="text-gray-400 text-sm">
+      <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3507.959036926862!2d77.58162287603365!3d28.450651192315856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cbf94deb6bc39%3A0x7ba6bedc9a2b537f!2sBennett%20University!5e0!3m2!1sen!2sin!4v1741680181407!5m2!1sen!2sin" 
                 width="100%" 
                 height="150" 
                 loading="lazy" 
                 className="max-w-[200px]"
               ></iframe>
-            </div>
-          </div>
+      </div>
+    </div>
+    
+    <div>
+      <h3 className="text-lg font-medium mb-4">Contact Us</h3>
+      <a href="mailto:ibf.bu@bennett.edu.in" className="flex items-center gap-2 text-gray-400 hover:text-purple-400">
+        <Mail className="w-5 h-5" />
+        <span className="text-sm">ibf.bu@bennett.edu.in</span>
+            </a>
+        <br />    
+         <div className="w-40 h-40 sm:w-30 sm:h-30">
+        <img src="/ibf.png" className="w-30 h-30 rounded-md" />
         </div>
-      </footer>
+      </div>
+  </div>
+</footer>
     </main>
   );
 }
